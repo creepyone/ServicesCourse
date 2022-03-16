@@ -1,0 +1,24 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Недостаточно прав доступа";
+}
+
+<div class="container text-center p-5">
+    <h1>Недостаточно прав для просмотра страницы</h1>
+    @{
+        if (!User.Identity.IsAuthenticated)
+        {
+            <a class="" asp-area="" asp-controller="Home" asp-action="Index">На главную</a>
+        }
+        else if (User.IsInRole("Admin"))
+        {
+            <a class="" asp-area="" asp-controller="Admin" asp-action="Index">На главную</a>
+        }
+        else
+        {
+            <a class="" asp-area="" asp-controller="User" asp-action="Index">На главную</a>
+        }
+    }
+</div>
