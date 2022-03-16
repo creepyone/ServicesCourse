@@ -11,7 +11,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using ServicesCourse.Models;
 using Microsoft.EntityFrameworkCore;
-
 namespace ServicesCourse
 {
     public class Startup
@@ -34,9 +33,11 @@ namespace ServicesCourse
                     options.LoginPath = "/login";
                     options.AccessDeniedPath = "/denied";
                 });
-
+            services.AddRazorPages().AddRazorRuntimeCompilation();
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DataBase")));
+
+            services.AddRouting(options => options.LowercaseUrls = true);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -5,7 +5,10 @@ namespace ServicesCourse.Models
 {
     public class User
     { 
+        [Required(ErrorMessage = "Не указан логин")]
         public string Login { get; set; }
+
+        [Required(ErrorMessage = "Не указан пароль")]
         public string Password { get; set; }
 
         public bool ActivityStatus { get; set; }

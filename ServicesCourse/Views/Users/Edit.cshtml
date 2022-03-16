@@ -1,0 +1,48 @@
+﻿@model ServicesCourse.Models.User
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Изменение учетной записи пользователя</h1>
+
+<div class="row">
+    <h4>@Html.DisplayFor(model => model.Login)</h4>
+    <hr />
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Login" />
+            <div class="form-group p-3">
+                <label asp-for="Password" class="control-label">Пароль</label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group p-3">
+                <label asp-for="UserTypeId" class="control-label">Тип пользователя</label>
+                <select asp-for="UserTypeId" class="form-control" asp-items=ViewBag.UserTypeId></select>
+                <span asp-validation-for="UserTypeId" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label  p-3">
+                    <input class="form-check-input" asp-for="ActivityStatus" />  Активен
+                </label>
+            </div>
+
+            <div class="form-group p-3">
+                <input type="submit" value="Сохранить" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="text-decoration-none p-3" asp-action="Index">Назад к списку</a>
+</div>
+
+@section Scripts {
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+}

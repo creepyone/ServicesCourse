@@ -1,0 +1,54 @@
+﻿@model IEnumerable<ServicesCourse.Models.User>
+
+@{
+    ViewData["Title"] = "Пользователи";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Учётные записи пользователей</h1>
+
+<p>
+    <a class="text-decoration-none" asp-action="Create">Добавить пользователя</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Логин
+            </th>
+            <th>
+                Пароль
+            </th>
+            <th>
+                Активен
+            </th>
+            <th>
+                Тип пользователя
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Login)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ActivityStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserType.UserTypeName)
+            </td>
+            <td>
+                <a class="text-decoration-none" asp-action="Edit" asp-route-id="@item.Login">Edit</a> |
+                <a class="text-decoration-none text-success" asp-action="Details" asp-route-id="@item.Login">Details</a> |
+                <a class="text-decoration-none text-danger" asp-action="Delete" asp-route-id="@item.Login">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

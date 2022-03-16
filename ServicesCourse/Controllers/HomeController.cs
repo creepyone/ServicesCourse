@@ -23,14 +23,16 @@ namespace ServicesCourse.Controllers
             this.dataBaseRepository = dataBaseRepository;
         }
 
-        //public HomeController()
-        //{
-        //    this.dataBaseRepository = dataBaseRepository;
-        //}
-
-
         public IActionResult Index()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                if (User.IsInRole("Admin"))
+                {
+                    return Redirect("Admin");
+                }
+                return Redirect("User");
+            }
             return View();
         }
 
@@ -42,9 +44,30 @@ namespace ServicesCourse.Controllers
         }
 
         [HttpPost("signup")]
-        public IActionResult SignUpValidate()
+        public async Task<IActionResult> SignUpValidateAsync(string login, string password, string passwordVer)
         {
-            return View();
+            var user = dataBaseRepository.GetUserByLogin(login).Result;
+            if (user == null)
+            {
+                if (password != passwordVer)
+                {
+                    TempData["Error"] = "Пароли не совпадают";
+                    return View("signup");
+                }
+
+                await dataBaseRepository.AddNewUser(login, password);
+
+                var claims = new List<Claim>();
+                claims.Add(new Claim(ClaimTypes.Role, "User"));
+                claims.Add(new Claim(ClaimTypes.NameIdentifier, login));
+                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+                await HttpContext.SignInAsync(claimsPrincipal);
+
+                return Redirect("User");
+            }
+            TempData["Error"] = "Логин занят";
+            return View("signup");
         }
 
 
@@ -70,13 +93,16 @@ namespace ServicesCourse.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Validate(string login, string password)
         {
-            var user = dataBaseRepository.GetUserByLogin(login);
+            var user = dataBaseRepository.GetUserByLogin(login).Result;
             if (user != null)
             {
                 if (password == user.Password)
-                {
-                    var userType = dataBaseRepository.GetUserType(user.UserTypeId);
-                    if (userType == UserTypes.Администратор)
+                {   if (!user.ActivityStatus) {
+                        TempData["Error"] = "Аккаунт не активен";
+                        return View("login");
+                    }
+                    var typename = user.UserType.UserTypeName;
+                    if (typename == UserTypes.Администратор)
                     {
                         var claims = new List<Claim>();
                         claims.Add(new Claim(ClaimTypes.Role, "Admin"));
@@ -84,10 +110,9 @@ namespace ServicesCourse.Controllers
                         var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                         var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
                         await HttpContext.SignInAsync(claimsPrincipal);
-                        TempData["Role"] = "Admin";
-                        return Redirect("Admin/Index");
+                        return Redirect("admin");
                     }
-                    if (userType == UserTypes.Пользователь)
+                    if (typename == UserTypes.Пользователь)
                     {
                         var claims = new List<Claim>();
                         claims.Add(new Claim(ClaimTypes.Role, "User"));
@@ -95,8 +120,7 @@ namespace ServicesCourse.Controllers
                         var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                         var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
                         await HttpContext.SignInAsync(claimsPrincipal);
-                        TempData["Role"] = "User";
-                        return Redirect("User/Index");
+                        return Redirect("user");
                     }
 
                 }

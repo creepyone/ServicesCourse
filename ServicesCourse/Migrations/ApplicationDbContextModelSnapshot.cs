@@ -201,7 +201,7 @@ namespace ServicesCourse.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime?>("BirthDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");

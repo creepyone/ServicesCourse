@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ServicesCourse.Controllers
 {
+    [Authorize(Roles = "User")]
     public class UserController : Controller
     {
-        [Authorize(Roles="User")]
         public IActionResult Index()
         {
             return View();

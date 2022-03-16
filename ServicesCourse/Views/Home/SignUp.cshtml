@@ -8,9 +8,7 @@
 
 
 <div class="container">
-
     <div class="row">
-
         <div class="col-md-6 offset-md-3">
             <h2 class="text-center text-dark mt-5">Регистрация</h2>
             <div class="card my-5">
@@ -24,10 +22,17 @@
                     <div class="mb-3">
                         <input type="password" class="form-control" name="passwordVer" placeholder="Подтвердите пароль" required>
                     </div>
+                    <div class="text-center">
+                        @{
+                            if (!string.IsNullOrEmpty(error))
+                            {
+                                <p class="text-danger">@error</p>
+                            }
+                        }
+                    </div>
                     <div class="text-center"><button type="submit" class="btn btn-primary px-5 mb-5 w-100">Создать аккаунт</button></div>
                 </form>
             </div>
-
         </div>
     </div>
 </div>

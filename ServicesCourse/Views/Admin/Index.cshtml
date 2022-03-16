@@ -2,7 +2,21 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-    ViewData["Title"] = "Главная страница администратора";
+    ViewData["Title"] = "Панель администратора";
 }
 
-<h1>Admin Index</h1>
+ 
+<div>
+        <h1 class="display-6"><a class="text-decoration-none" asp-controller="Users">Учетные записи пользователей</a></h1>
+        <h1 class="display-6"><a class="text-decoration-none" asp-controller="UserProfiles">Профили пользователей</a></h1>
+        <hr />
+        
+        <h1 class="display-6"><a class="text-decoration-none" asp-controller="Sections">Разделы сервисов</a></h1>
+        <h1 class="display-6"><a class="text-decoration-none" asp-controller="Subsections">Подразделы сервисов</a></h1>
+        <h1 class="display-6"><a class="text-decoration-none" asp-controller="Services">Сервисы</a></h1>
+        <hr />
+        
+        <h1 class="display-6"><a class="text-decoration-none" asp-controller="Services">История</a></h1>
+        
+    
+</div>

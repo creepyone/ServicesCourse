@@ -23,6 +23,11 @@ namespace ServicesCourse.Models
         public DbSet<UserProfile> UserProfile { get; set; }
         public DbSet<Sex> Sex { get; set; }
 
+        public DbSet<Service> Service { get; set; }
+        public DbSet<Subsection> Subsection { get; set; }
+        public DbSet<Section> Section { get; set; }
+        public DbSet<History> History { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -78,7 +83,8 @@ namespace ServicesCourse.Models
             public void Configure(EntityTypeBuilder<UserProfile> builder)
             {
                 builder.HasKey(p => p.Login);
-
+                builder.Property(p => p.BirthDate).HasColumnType("date");
+                
                 builder.HasData(new UserProfile[]
                 {
                     new UserProfile { Login = "admin" },
