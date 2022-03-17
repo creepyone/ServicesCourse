@@ -33,7 +33,9 @@ namespace ServicesCourse.Controllers
             }
 
             var subsection = await _context.Subsection
+                .Include(x => x.Section)
                 .FirstOrDefaultAsync(m => m.Id == id);
+
             if (subsection == null)
             {
                 return NotFound();
@@ -45,6 +47,7 @@ namespace ServicesCourse.Controllers
         // GET: Subsections/Create
         public IActionResult Create()
         {
+            ViewData["SectionId"] = new SelectList(_context.Section.Where(p => p.Id != 1), "Id", "SectionName");
             return View();
         }
 
@@ -61,6 +64,7 @@ namespace ServicesCourse.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["SectionId"] = new SelectList(_context.Section.Where(p => p.Id != 1), "Id", "SectionName");
             return View(subsection);
         }
 
@@ -77,6 +81,8 @@ namespace ServicesCourse.Controllers
             {
                 return NotFound();
             }
+
+            ViewData["SectionId"] = new SelectList(_context.Section.Where(p => p.Id != 1), "Id", "SectionName");
             return View(subsection);
         }
 
@@ -112,6 +118,7 @@ namespace ServicesCourse.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["SectionId"] = new SelectList(_context.Section.Where(p => p.Id != 1), "Id", "SectionName");
             return View(subsection);
         }
 

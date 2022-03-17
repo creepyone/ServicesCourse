@@ -5,9 +5,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create</h1>
+<h1>Создание нового подраздела</h1>
 
-<h4>Subsection</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -20,7 +19,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="SectionId" class="control-label"></label>
-                <select asp-for="SectionId" class ="form-control" asp-items="ViewBag.Sections"></select>
+                <select asp-for="SectionId" class ="form-control" asp-items="ViewBag.SectionId"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -30,7 +29,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Назад к списку</a>
 </div>
 
 @section Scripts {

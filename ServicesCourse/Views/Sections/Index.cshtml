@@ -5,10 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Разделы сервисов</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="text-decoration-none" asp-action="Create">Добавить сервис</a>
 </p>
 <table class="table">
     <thead>
@@ -26,9 +26,11 @@
                 @Html.DisplayFor(modelItem => item.SectionName)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                @if(item.Id != 1){
+                    <a class="text-decoration-none" asp-action="Edit" asp-route-id="@item.Id">Изменить</a ><span> | </span> 
+                    <a class="text-success text-decoration-none" asp-action="Details" asp-route-id="@item.Id">Подробнее </a> <span> | </span> 
+                    <a class="text-danger text-decoration-none" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                }
             </td>
         </tr>
 }

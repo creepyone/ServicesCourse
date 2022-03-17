@@ -36,14 +36,15 @@ namespace ServicesCourse.Controllers
                 return NotFound();
             }
 
-            var user = await _dataBaseRepository.GetUserByLogin(id);
+            var user = await _context.User
+                .Include(x => x.UserType)
+                .FirstOrDefaultAsync(m => m.Login == id);
 
             if (user == null)
             {
                 return NotFound();
             }
 
-            ViewData["UserType"] = user.UserType.UserTypeName;
             return View(user);
         }
 
@@ -66,23 +67,25 @@ namespace ServicesCourse.Controllers
                 await _dataBaseRepository.AddNewUser(user.Login, user.Password, user.UserTypeId, user.ActivityStatus); 
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UserTypeId"] = new SelectList(_context.UserType, "Id", "UserTypeName");
             return View(user);
         }
 
         // GET: Users/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
+
             if (id == null)
             {
                 return NotFound();
             }
 
-            var user = await _context.User.FindAsync(id);
+            var user = await _context.User.FindAsync(id); 
+
             if (user == null)
             {
                 return NotFound();
             }
+
             ViewData["UserTypeId"] = new SelectList(_context.UserType, "Id", "UserTypeName");
             return View(user);
         }
@@ -140,7 +143,6 @@ namespace ServicesCourse.Controllers
                 return NotFound();
             }
 
-            ViewData["UserType"] = user.UserType.UserTypeName;
             return View(user);
         }
 

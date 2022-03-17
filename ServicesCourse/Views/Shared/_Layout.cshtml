@@ -18,15 +18,15 @@
                 @{
                     if (!User.Identity.IsAuthenticated)
                     {
-                        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Сервисы интеллектуальной системы</a>
+                        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Сервисы интеллектуального здания</a>
                     }
                     else if (User.IsInRole("Admin"))
                     {
-                        <a class="navbar-brand" asp-area="" asp-controller="Admin" asp-action="Index">Сервисы интеллектуальной системы</a>
+                        <a class="navbar-brand" asp-area="" asp-controller="Admin" asp-action="Index">Сервисы интеллектуального здания</a>
                     }
                     else
                     {
-                        <a class="navbar-brand" asp-area="" asp-controller="User" asp-action="Index">Сервисы интеллектуальной системы</a>
+                        <a class="navbar-brand" asp-area="" asp-controller="User" asp-action="Index">Сервисы интеллектуального здания</a>
                     }
                 }
 
@@ -70,7 +70,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2022 - Сервисы интеллектуальной системы
+            &copy; 2022 - Сервисы интеллектуального здания
         </div>
     </footer>
 

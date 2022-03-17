@@ -12,16 +12,19 @@ namespace ServicesCourse.Controllers
     public class UserProfilesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly DataBaseRepository _dataBaseRepository;
 
         public UserProfilesController(ApplicationDbContext context)
         {
             _context = context;
+            _dataBaseRepository = new DataBaseRepository(_context);
+
         }
 
         // GET: UserProfiles
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.UserProfile.Include(u => u.User);
+            var applicationDbContext = _context.UserProfile.Include(c => c.Sex).Include(c => c.User);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -36,6 +39,7 @@ namespace ServicesCourse.Controllers
             var userProfile = await _context.UserProfile
                 .Include(u => u.User)
                 .FirstOrDefaultAsync(m => m.Login == id);
+
             if (userProfile == null)
             {
                 return NotFound();
@@ -44,31 +48,7 @@ namespace ServicesCourse.Controllers
             return View(userProfile);
         }
 
-        // GET: UserProfiles/Create
-        public IActionResult Create()
-        {
-            ViewData["Login"] = new SelectList(_context.User, "Login", "Login");
-            return View();
-        }
 
-        // POST: UserProfiles/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Login,PhoneNumber,Surname,Name,Patronymic,SexId,BirthDate,Email")] UserProfile userProfile)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(userProfile);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["Login"] = new SelectList(_context.User, "Login", "Login", userProfile.Login);
-            return View(userProfile);
-        }
-
-        // GET: UserProfiles/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
@@ -81,7 +61,7 @@ namespace ServicesCourse.Controllers
             {
                 return NotFound();
             }
-            ViewData["Login"] = new SelectList(_context.User, "Login", "Login", userProfile.Login);
+            ViewData["SexId"] = new SelectList(_context.Sex, "Id", "SexName");
             return View(userProfile);
         }
 
@@ -119,36 +99,6 @@ namespace ServicesCourse.Controllers
             }
             ViewData["Login"] = new SelectList(_context.User, "Login", "Login", userProfile.Login);
             return View(userProfile);
-        }
-
-        // GET: UserProfiles/Delete/5
-        public async Task<IActionResult> Delete(string id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var userProfile = await _context.UserProfile
-                .Include(u => u.User)
-                .FirstOrDefaultAsync(m => m.Login == id);
-            if (userProfile == null)
-            {
-                return NotFound();
-            }
-
-            return View(userProfile);
-        }
-
-        // POST: UserProfiles/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
-        {
-            var userProfile = await _context.UserProfile.FindAsync(id);
-            _context.UserProfile.Remove(userProfile);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
         }
 
         private bool UserProfileExists(string id)
