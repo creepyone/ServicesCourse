@@ -1,7 +1,7 @@
 ﻿    @model ServicesCourse.Models.User
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Добавление учетной записи пользователя";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -23,12 +23,12 @@
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="form-group p-2">
-                <label asp-for="UserTypeId" class="control-label"></label>
+                <label asp-for="UserType" class="control-label"></label>
                 <select asp-for="UserTypeId" class="form-control" asp-items="ViewBag.UserTypeId"></select>
             </div>
             <div class="form-group form-check">
                 <label class="p-2 form-check-label">
-                    <input class="form-check-input" asp-for="ActivityStatus" />
+                    <input class="form-check-input" asp-for="ActivityStatus" /> Активен
                 </label>
             </div>
 

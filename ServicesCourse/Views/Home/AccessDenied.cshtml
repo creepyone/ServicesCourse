@@ -10,15 +10,15 @@
     @{
         if (!User.Identity.IsAuthenticated)
         {
-            <a class="" asp-area="" asp-controller="Home" asp-action="Index">На главную</a>
+            <a class="text-decoration-none" asp-area="" asp-controller="Home" asp-action="Index">На главную</a>
         }
         else if (User.IsInRole("Admin"))
         {
-            <a class="" asp-area="" asp-controller="Admin" asp-action="Index">На главную</a>
+            <a class="text-decoration-none" asp-area="" asp-controller="Admin" asp-action="Index">На главную</a>
         }
         else
         {
-            <a class="" asp-area="" asp-controller="User" asp-action="Index">На главную</a>
+            <a class="text-decoration-none"  asp-area="" asp-controller="User" asp-action="Index">На главную</a>
         }
     }
 </div>

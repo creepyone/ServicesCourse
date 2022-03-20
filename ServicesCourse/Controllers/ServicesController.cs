@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +10,7 @@ using ServicesCourse.Models;
 
 namespace ServicesCourse.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ServicesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -21,7 +23,8 @@ namespace ServicesCourse.Controllers
         // GET: Services
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Service.ToListAsync());
+            var applicationDbContext = _context.Service.Include(s => s.Subsection);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Services/Details/5
@@ -33,6 +36,7 @@ namespace ServicesCourse.Controllers
             }
 
             var service = await _context.Service
+                .Include(s => s.Subsection)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (service == null)
             {
@@ -45,6 +49,7 @@ namespace ServicesCourse.Controllers
         // GET: Services/Create
         public IActionResult Create()
         {
+            ViewData["SubsectionId"] = new SelectList(_context.Subsection, "Id", "SubscetionName");
             return View();
         }
 
@@ -53,7 +58,7 @@ namespace ServicesCourse.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ServiceName,AboutService,SubsectionId,Version,ActivityStatus")] Service service)
+        public async Task<IActionResult> Create([Bind("Id,ServiceName,AboutService,Version,ActivityStatus,SubsectionId")] Service service)
         {
             if (ModelState.IsValid)
             {
@@ -61,6 +66,7 @@ namespace ServicesCourse.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["SubsectionId"] = new SelectList(_context.Subsection, "Id", "SubscetionName", service.SubsectionId);
             return View(service);
         }
 
@@ -77,6 +83,7 @@ namespace ServicesCourse.Controllers
             {
                 return NotFound();
             }
+            ViewData["SubsectionId"] = new SelectList(_context.Subsection, "Id", "SubscetionName", service.SubsectionId);
             return View(service);
         }
 
@@ -85,7 +92,7 @@ namespace ServicesCourse.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ServiceName,AboutService,SubsectionId,Version,ActivityStatus")] Service service)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,ServiceName,AboutService,Version,ActivityStatus,SubsectionId")] Service service)
         {
             if (id != service.Id)
             {
@@ -112,6 +119,7 @@ namespace ServicesCourse.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["SubsectionId"] = new SelectList(_context.Subsection, "Id", "SubscetionName", service.SubsectionId);
             return View(service);
         }
 
@@ -124,6 +132,7 @@ namespace ServicesCourse.Controllers
             }
 
             var service = await _context.Service
+                .Include(s => s.Subsection)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (service == null)
             {

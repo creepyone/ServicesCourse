@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<ServicesCourse.Models.Service>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Сервисы";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>Сервисы</h1>
 
 <p>
-    <a asp-action="Create">Добавить сервис</a>
+    <a class="text-decoration-none" asp-action="Create">Добавить сервис</a>
 </p>
 <table class="table">
     <thead>
@@ -20,35 +20,44 @@
                 @Html.DisplayNameFor(model => model.AboutService)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Subsection)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Version)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ActivityStatus)
             </th>
+
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ServiceName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AboutService)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Version)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ActivityStatus)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ServiceName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AboutService)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Subsection.SubscetionName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Version)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ActivityStatus)
+                </td>
+
+                <td>
+                    <a class="text-decoration-none" asp-action="Edit" asp-route-id="@item.Id">Изменить</a> |
+                    <a class="text-decoration-none text-success" asp-action="Details" asp-route-id="@item.Id">Подробнее</a> |
+                    <a class="text-decoration-none text-danger" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

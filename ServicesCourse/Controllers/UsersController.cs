@@ -36,9 +36,13 @@ namespace ServicesCourse.Controllers
                 return NotFound();
             }
 
+
             var user = await _context.User
                 .Include(x => x.UserType)
+                .Include(x => x.HistoryRecords)
+                .ThenInclude(x => x.Service)
                 .FirstOrDefaultAsync(m => m.Login == id);
+
 
             if (user == null)
             {

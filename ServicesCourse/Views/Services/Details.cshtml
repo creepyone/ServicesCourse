@@ -1,43 +1,49 @@
 ﻿@model ServicesCourse.Models.Service
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Информация о сервисе";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Details</h1>
+<h1>Информация о сервисе</h1>
 
 <div>
-    <h4>Service</h4>
+    <h4>@Html.DisplayFor(s=>s.ServiceName)</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.ServiceName)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.ServiceName)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.AboutService)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.AboutService)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Version)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Version)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.ActivityStatus)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.ActivityStatus)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Subsection)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Subsection.SubscetionName)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a class="text-decoration-none" asp-action="Edit" asp-route-id="@Model.Id">Изменить</a> |
+    <a class="text-decoration-none" asp-action="Index">К списку сервисов</a>
 </div>

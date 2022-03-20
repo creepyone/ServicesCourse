@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +10,7 @@ using ServicesCourse.Models;
 
 namespace ServicesCourse.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class SectionsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -33,6 +35,8 @@ namespace ServicesCourse.Controllers
             }
 
             var section = await _context.Section
+                .Include(x => x.Subsections)
+                .ThenInclude(x => x.Services)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (section == null)
             {

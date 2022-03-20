@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +10,7 @@ using ServicesCourse.Models;
 
 namespace ServicesCourse.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class UserProfilesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -38,6 +40,8 @@ namespace ServicesCourse.Controllers
 
             var userProfile = await _context.UserProfile
                 .Include(u => u.User)
+                .ThenInclude(x => x.HistoryRecords)
+                .ThenInclude(x => x.Service)
                 .FirstOrDefaultAsync(m => m.Login == id);
 
             if (userProfile == null)

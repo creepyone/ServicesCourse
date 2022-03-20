@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<ServicesCourse.Models.Section>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Разделы сервисов";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -20,19 +20,26 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.SectionName)
-            </td>
-            <td>
-                @if(item.Id != 1){
-                    <a class="text-decoration-none" asp-action="Edit" asp-route-id="@item.Id">Изменить</a ><span> | </span> 
-                    <a class="text-success text-decoration-none" asp-action="Details" asp-route-id="@item.Id">Подробнее </a> <span> | </span> 
-                    <a class="text-danger text-decoration-none" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
-                }
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SectionName)
+                </td>
+                <td>
+                    @if (item.Id != 1)
+                    {
+                        <a class="text-decoration-none" asp-action="Edit" asp-route-id="@item.Id">Изменить</a>
+                        <span> | </span>
+                        <a class="text-success text-decoration-none" asp-action="Details" asp-route-id="@item.Id">Подробнее </a> <span> | </span>
+                        <a class="text-danger text-decoration-none" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                    }
+                    else
+                    {
+                         <a class="text-success text-decoration-none" asp-action="Details" asp-route-id="@item.Id">Подробнее </a>
+                    }
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

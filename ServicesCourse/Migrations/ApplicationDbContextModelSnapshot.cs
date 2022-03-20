@@ -88,6 +88,7 @@ namespace ServicesCourse.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Version")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -288,20 +289,24 @@ namespace ServicesCourse.Migrations
 
             modelBuilder.Entity("ServicesCourse.Models.Service", b =>
                 {
-                    b.HasOne("ServicesCourse.Models.Subsection", null)
+                    b.HasOne("ServicesCourse.Models.Subsection", "Subsection")
                         .WithMany("Services")
                         .HasForeignKey("SubsectionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Subsection");
                 });
 
             modelBuilder.Entity("ServicesCourse.Models.Subsection", b =>
                 {
-                    b.HasOne("ServicesCourse.Models.Section", null)
+                    b.HasOne("ServicesCourse.Models.Section", "Section")
                         .WithMany("Subsections")
                         .HasForeignKey("SectionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Section");
                 });
 
             modelBuilder.Entity("ServicesCourse.Models.User", b =>
@@ -323,9 +328,11 @@ namespace ServicesCourse.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ServicesCourse.Models.Sex", null)
+                    b.HasOne("ServicesCourse.Models.Sex", "Sex")
                         .WithMany("UserProfiles")
                         .HasForeignKey("SexId");
+
+                    b.Navigation("Sex");
 
                     b.Navigation("User");
                 });

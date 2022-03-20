@@ -1,7 +1,7 @@
 ﻿@model ServicesCourse.Models.UserProfile
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Изменение данных о пользователе";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -53,13 +53,16 @@
                 <input type="submit" value="Сохранить" class="btn btn-primary" />
             </div>
         </form>
+        <a asp-action="Index" class="text-decoration-none p-2">Назад к списку</a>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index" class="text-decoration-none p-2">Назад к списку</a>
-</div>
+
+
+
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
 }

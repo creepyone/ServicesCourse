@@ -1,14 +1,14 @@
 ﻿@model ServicesCourse.Models.Subsection
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Информация о подразделе";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Details</h1>
+<h1>Информация о подразделе</h1>
 
 <div>
-    <h4>Subsection</h4>
+    <h4>@Html.DisplayFor(model => model.SubscetionName)</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -26,6 +26,20 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a class="text-decoration-none" asp-action="Edit" asp-route-id="@Model.Id">Изменить</a> |
+    <a class="text-decoration-none" asp-action="Index">К списку подразделов</a>
+</div>
+
+<hr>
+<div class="container">
+    <h3>Информация о сервисах</h3>
+    <table class="table table-striped">
+        @foreach (Service service in Model.Services)
+        {
+            <tr>
+                <td>@service.ServiceName</td>
+                <td style="text-align: right"><a class="text-success text-decoration-none " asp-controller="Services" asp-action="Details" asp-route-id="@service.Id">Подробнее </a> </td>
+            </tr>
+        }
+    </table>
 </div>

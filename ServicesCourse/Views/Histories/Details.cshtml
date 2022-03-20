@@ -1,0 +1,36 @@
+﻿@model ServicesCourse.Models.History
+
+@{
+    ViewData["Title"] = "Информация о посещении сервиса";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Информация о посещении сервиса</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.User)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.User.Login)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Service)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Service.ServiceName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AccessTime)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AccessTime)
+        </dd>
+
+    </dl>
+</div>
+<div>
+    <a class="text-decoration-none" asp-action="Index">Назад с списку</a>
+</div>

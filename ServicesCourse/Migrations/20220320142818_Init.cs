@@ -96,9 +96,9 @@ namespace ServicesCourse.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ServiceName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AboutService = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SubsectionId = table.Column<int>(type: "int", nullable: false),
-                    Version = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ActivityStatus = table.Column<bool>(type: "bit", nullable: false)
+                    Version = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ActivityStatus = table.Column<bool>(type: "bit", nullable: false),
+                    SubsectionId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
