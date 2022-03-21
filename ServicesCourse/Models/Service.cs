@@ -26,5 +26,12 @@ namespace ServicesCourse.Models
 
         public List<User> Users { get; set; } = new List<User>();
         public List<History> HistoryRecords { get; set; } = new List<History>();
+
+        public override bool Equals(object obj)
+        {
+            Service service = obj as Service;
+            if (obj is null) return false;
+            return service.Id == Id;
+        }
     }
 }
