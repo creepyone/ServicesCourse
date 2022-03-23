@@ -1,7 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
     ViewData["Title"] = "Регистрация";
     var error = TempData["Error"] as string;
 }
@@ -13,14 +10,14 @@
             <h2 class="text-center text-dark mt-5">Регистрация</h2>
             <div class="card my-5">
                 <form method="post" class="card-body cardbody-color p-lg-5">
-                    <div class="mb-3">
+                    <div class="form-group mb-3">
                         <input type="text" maxlength="20" class="form-control" name="login" placeholder="Логин" required>
                     </div>
                     <div class="mb-3">
-                        <input type="password" class="form-control" name="password" placeholder="Пароль" required>
+                        <input type="password" maxlength="20"  minlength="4" class="form-control" name="password" placeholder="Пароль" required>
                     </div>
                     <div class="mb-3">
-                        <input type="password" class="form-control" name="passwordVer" placeholder="Подтвердите пароль" required>
+                        <input type="password"  maxlength="20"  minlength="4" class="form-control" name="passwordVer" placeholder="Подтвердите пароль" required>
                     </div>
                     <div class="text-center">
                         @{
@@ -36,3 +33,4 @@
         </div>
     </div>
 </div>
+

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "T19q0YaozaG+/3JXWfe86+6gnT1VgvvGJXLEvzlhlc8=",
+  "Hash": "/Btc/iGNRqh5pau8u28PHtBL6gD9fC+8hw4jnWVYx54=",
   "Source": "ServicesCourse",
   "BasePath": "_content/ServicesCourse",
   "Mode": "Default",
@@ -66,6 +66,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\Denis\\Desktop\\ServicesCourse\\ServicesCourse\\wwwroot\\images\\no-image.png",
+      "SourceId": "ServicesCourse",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Denis\\Desktop\\ServicesCourse\\ServicesCourse\\wwwroot\\",
+      "BasePath": "_content/ServicesCourse",
+      "RelativePath": "images/no-image.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\no-image.png"
     },
     {
       "Identity": "C:\\Users\\Denis\\Desktop\\ServicesCourse\\ServicesCourse\\wwwroot\\js\\site.js",

@@ -12,8 +12,8 @@ using ServicesCourse.Models;
 namespace ServicesCourse.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220320142818_Init")]
-    partial class Init
+    [Migration("20220323120430_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,7 +27,7 @@ namespace ServicesCourse.Migrations
             modelBuilder.Entity("ServicesCourse.Models.History", b =>
                 {
                     b.Property<string>("Login")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<DateTime>("AccessTime")
                         .ValueGeneratedOnAdd()
@@ -90,7 +90,6 @@ namespace ServicesCourse.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Version")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -162,7 +161,8 @@ namespace ServicesCourse.Migrations
             modelBuilder.Entity("ServicesCourse.Models.User", b =>
                 {
                     b.Property<string>("Login")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<bool>("ActivityStatus")
                         .HasColumnType("bit");
@@ -201,7 +201,8 @@ namespace ServicesCourse.Migrations
             modelBuilder.Entity("ServicesCourse.Models.UserProfile", b =>
                 {
                     b.Property<string>("Login")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<DateTime?>("BirthDate")
                         .HasColumnType("date");

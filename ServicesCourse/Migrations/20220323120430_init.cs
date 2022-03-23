@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ServicesCourse.Migrations
 {
-    public partial class Init : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -72,7 +72,7 @@ namespace ServicesCourse.Migrations
                 name: "User",
                 columns: table => new
                 {
-                    Login = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Login = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Password = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     ActivityStatus = table.Column<bool>(type: "bit", nullable: false),
                     UserTypeId = table.Column<int>(type: "int", nullable: false)
@@ -96,7 +96,7 @@ namespace ServicesCourse.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ServiceName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AboutService = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Version = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Version = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ActivityStatus = table.Column<bool>(type: "bit", nullable: false),
                     SubsectionId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -115,7 +115,7 @@ namespace ServicesCourse.Migrations
                 name: "UserProfile",
                 columns: table => new
                 {
-                    Login = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Login = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Surname = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -144,7 +144,7 @@ namespace ServicesCourse.Migrations
                 name: "History",
                 columns: table => new
                 {
-                    Login = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Login = table.Column<string>(type: "nvarchar(20)", nullable: false),
                     AccessTime = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     ServiceId = table.Column<int>(type: "int", nullable: false)
                 },

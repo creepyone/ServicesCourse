@@ -46,6 +46,7 @@ namespace ServicesCourse.Models
             public void Configure(EntityTypeBuilder<User> builder)
             {
                 builder.HasKey(p => p.Login);
+                builder.Property(p => p.Login).HasMaxLength(20);
                 builder.Property(p => p.Password).IsRequired().HasMaxLength(20);
                 builder.Property(p => p.UserTypeId).IsRequired();
                 builder.Property(p => p.ActivityStatus).IsRequired();
@@ -115,7 +116,6 @@ namespace ServicesCourse.Models
                 builder.HasKey(p => p.Id);
                 builder.Property(p => p.SectionName).IsRequired();
 
-
                 builder.HasData(new Section[]
                 {
                     new Section { Id = 1, SectionName = "Общее" }
@@ -147,6 +147,9 @@ namespace ServicesCourse.Models
                 builder.Property(p => p.ServiceName).IsRequired();
                 builder.Property(p => p.ActivityStatus).IsRequired();
                 builder.Property(p => p.SubsectionId).IsRequired();
+
+                builder.Property(p => p.Version).IsRequired(false);
+                builder.Property(p => p.AboutService).IsRequired(false);
 
                 builder.HasMany(u => u.Users)
                     .WithMany(p => p.Services)

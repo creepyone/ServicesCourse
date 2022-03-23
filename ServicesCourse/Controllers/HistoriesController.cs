@@ -205,7 +205,7 @@ namespace ServicesCourse.Controllers
                 new DataColumn("Версия")
             });
 
-            var all_data = _context.Service.Distinct();
+            var all_data = _context.Service.Where(s => s.ActivityStatus).Distinct();
 
             int hours = 24;
             DbFunctions dbFunctions = null;

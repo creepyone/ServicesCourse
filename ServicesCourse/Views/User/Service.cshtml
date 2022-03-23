@@ -1,0 +1,38 @@
+﻿@model User
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    var service = ViewData["ServiceInfo"] as Service;
+    ViewData["Title"] = @service.ServiceName;
+}
+
+@using System.Security.Claims;
+
+<div class="container px-4 px-lg-5 my-5">
+    <div class="row gx-4 gx-lg-5 align-items-center">
+        <div class="col-md-4"><img class="card-img-top mb-5 mb-md-0" src="/images/no-image.png" alt="..."></div>
+        <div class="col-md-7">
+            <h1 class="display-5 fw-bolder">@service.ServiceName</h1>
+            <div class="fs-5 mb-3">
+                <hr />
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Раздел: @service.Subsection.Section.SectionName</li>
+                    <li class="list-group-item">Подраздел: @service.Subsection.SubscetionName</li>
+                    <li class="list-group-item">Версия: @service.Version</li>
+                    <li class="list-group-item">
+                        О сервисе: 
+                        <p style="overflow-wrap: anywhere; text-indent: 20px">@service.AboutService</p>
+                    </li>
+                </ul>
+            </div>
+            <hr />
+            <div class="d-flex">
+                <form asp-controller="User" asp-route-id="@service.Id" asp-action="ServiceAccessed" method="post">
+                    <input class="btn btn-primary" type="submit" value="Перейти к сервису">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

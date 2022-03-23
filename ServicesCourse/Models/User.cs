@@ -7,10 +7,15 @@ namespace ServicesCourse.Models
     { 
         [Required(ErrorMessage = "Не указан логин")]
         [Display(Name = "Логин")]
+        [MaxLength(20, ErrorMessage = "Максимальная длина логина 20 символов")]
+        [StringLength(20)]
         public string Login { get; set; }
 
         [Required(ErrorMessage = "Не указан пароль")]
         [Display(Name = "Пароль")]
+        [MinLength(4, ErrorMessage = "Минимальная длина пароля - 4 символа")]
+        [MaxLength(20, ErrorMessage = "Максимальная длина пароля - 20 символов")]
+        [StringLength(20, MinimumLength = 4)]
         public string Password { get; set; }
 
         [Display(Name = "Активен")]

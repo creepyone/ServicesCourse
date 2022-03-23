@@ -14,12 +14,10 @@ namespace ServicesCourse.Controllers
     public class UserProfilesController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private readonly DataBaseRepository _dataBaseRepository;
 
         public UserProfilesController(ApplicationDbContext context)
         {
             _context = context;
-            _dataBaseRepository = new DataBaseRepository(_context);
 
         }
 

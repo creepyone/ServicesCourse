@@ -5,7 +5,43 @@
 *@
 @{
     ViewData["Title"] = "Главная страница пользователя";
+    var services = ViewData["Services"] as List<Service>;
 }
 
-<h1>User Index</h1>
-<h2></h2>
+<h1>Доступные сервисы</h1>
+@{
+    if (services is null || services.Count == 0)
+    {
+        <p class="display-6">Активных сервисов нет</p>
+    }
+    else
+    {
+        <div class="container p-4">
+            <div class="row">
+                @foreach (Service service in services)
+                {
+                    <div class="col-md-3">
+                        <div class="ibox">
+                            <div class="ibox-content product-box">
+                                <div class="product-imitation">
+                                    [ PHOTO ]
+                                </div>
+                                <div class="product-desc">
+                                    <div>
+                                    <small class="text-muted">@service.Subsection.Section.SectionName</small>
+                                    </div>
+                                    <small class="text-muted">@service.Subsection.SubscetionName</small>
+                                    <span class="product-name"> @service.ServiceName</span>
+                                    <div class="m-t text-righ">
+                                        <a asp-controller="User" asp-route-id="@service.Id" asp-action="Service" class="btn btn-xs btn-outline btn-primary">Информация<i class="fa fa-long-arrow-right"></i> </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+}
+

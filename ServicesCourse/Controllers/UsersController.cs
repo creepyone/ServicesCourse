@@ -14,11 +14,9 @@ namespace ServicesCourse.Controllers
     public class UsersController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private readonly DataBaseRepository _dataBaseRepository;
         public UsersController(ApplicationDbContext context)
         {
             _context = context;
-            _dataBaseRepository = new DataBaseRepository(context);
         }
 
         // GET: Users
@@ -68,7 +66,7 @@ namespace ServicesCourse.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _dataBaseRepository.AddNewUser(user.Login, user.Password, user.UserTypeId, user.ActivityStatus); 
+                await _context.User.AddAsync(user); 
                 return RedirectToAction(nameof(Index));
             }
             return View(user);

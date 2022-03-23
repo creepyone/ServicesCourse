@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using ServicesCourse.Models;
 using System;
@@ -8,19 +9,18 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Security.Claims;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ServicesCourse.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-        private readonly DataBaseRepository dataBaseRepository;
+        ApplicationDbContext _context;
 
-        public HomeController(ILogger<HomeController> logger, DataBaseRepository dataBaseRepository)
+        public HomeController(ApplicationDbContext context)
         {
-            _logger = logger;
-            this.dataBaseRepository = dataBaseRepository;
+            _context = context;
         }
 
         public IActionResult Index()
@@ -46,7 +46,7 @@ namespace ServicesCourse.Controllers
         [HttpPost("signup")]
         public async Task<IActionResult> SignUpValidateAsync(string login, string password, string passwordVer)
         {
-            var user = dataBaseRepository.GetUserByLogin(login).Result;
+            var user = _context.User.FirstOrDefault(s => s.Login == login);   
             if (user == null)
             {
                 if (password != passwordVer)
@@ -55,13 +55,22 @@ namespace ServicesCourse.Controllers
                     return View("signup");
                 }
 
-                await dataBaseRepository.AddNewUser(login, password);
+                await _context.User.AddAsync(new User()
+                {
+                    Login = login,
+                    Password = password,
+                    UserTypeId = 2,
+                    ActivityStatus = true
+                });
+
+                _context.SaveChanges();
 
                 var claims = new List<Claim>();
                 claims.Add(new Claim(ClaimTypes.Role, "User"));
                 claims.Add(new Claim(ClaimTypes.NameIdentifier, login));
                 var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                 var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+                Thread.CurrentPrincipal = claimsPrincipal;
                 await HttpContext.SignInAsync(claimsPrincipal);
 
                 return Redirect("User");
@@ -93,7 +102,9 @@ namespace ServicesCourse.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Validate(string login, string password)
         {
-            var user = dataBaseRepository.GetUserByLogin(login).Result;
+            var user = _context.User
+                .Include(u => u.UserType)
+                .FirstOrDefault(s => s.Login == login); 
             if (user != null)
             {
                 if (password == user.Password)
@@ -109,6 +120,7 @@ namespace ServicesCourse.Controllers
                         claims.Add(new Claim(ClaimTypes.NameIdentifier, login));
                         var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                         var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+                        Thread.CurrentPrincipal = claimsPrincipal;
                         await HttpContext.SignInAsync(claimsPrincipal);
                         return Redirect("admin");
                     }
@@ -119,6 +131,7 @@ namespace ServicesCourse.Controllers
                         claims.Add(new Claim(ClaimTypes.NameIdentifier, login));
                         var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                         var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+                        Thread.CurrentPrincipal = claimsPrincipal;
                         await HttpContext.SignInAsync(claimsPrincipal);
                         return Redirect("user");
                     }
