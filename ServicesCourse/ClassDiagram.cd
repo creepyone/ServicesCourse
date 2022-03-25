@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ServicesCourse.Models.ApplicationDbContext">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Class Name="ServicesCourse.Models.ApplicationDbContext.UserConfiguration" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Models\ApplicationDbContext.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+      <Class Name="ServicesCourse.Models.ApplicationDbContext.UserTypeConfiguration" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Models\ApplicationDbContext.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+      <Class Name="ServicesCourse.Models.ApplicationDbContext.UserProfileConfiguration" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Models\ApplicationDbContext.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+      <Class Name="ServicesCourse.Models.ApplicationDbContext.SexConfiguration" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Models\ApplicationDbContext.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+      <Class Name="ServicesCourse.Models.ApplicationDbContext.SectionConfiguration" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Models\ApplicationDbContext.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+      <Class Name="ServicesCourse.Models.ApplicationDbContext.SubsectionConfiguration" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Models\ApplicationDbContext.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+      <Class Name="ServicesCourse.Models.ApplicationDbContext.ServiceConfiguration" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Models\ApplicationDbContext.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+      <Class Name="ServicesCourse.Models.ApplicationDbContext.HistoryConfiguration" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Models\ApplicationDbContext.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAgBAAAAAAAABAAAAAAAAAAAEAQASAAAAAACAIAAAAA=</HashCode>
+      <FileName>Models\ApplicationDbContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ServicesCourse.Models.History">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABADAAAAAAAAAAAAAAAAAAAAAAQAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Models\History.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ServicesCourse.Models.Section">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>Models\Section.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ServicesCourse.Models.Service">
+    <Position X="5.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAkCgCAAAAAAAAAAgAAAAIAAAAAAAAAAAAEAAAAABAA=</HashCode>
+      <FileName>Models\Service.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ServicesCourse.Models.Sex">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>Models\Sex.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ServicesCourse.Models.Subsection">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAQAAI=</HashCode>
+      <FileName>Models\Subsection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ServicesCourse.Models.User">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAgAAAAAIAAAAAAAAAAAAAAAQACAACAAEQAAAAAAA=</HashCode>
+      <FileName>Models\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ServicesCourse.Models.UserProfile">
+    <Position X="2.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABACAAACAAJAAAAAAAQAQABAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Models\UserProfile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ServicesCourse.Models.PhoneNumberAttribute">
+    <Position X="7.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\UserProfile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ServicesCourse.Models.UserType">
+    <Position X="7.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\UserType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ServicesCourse.Controllers.AdminController">
+    <Position X="15.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\AdminController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ServicesCourse.Controllers.HistoriesController">
+    <Position X="13.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAEAAJBAQAAAAAAAAAAAAAAAABAAEAAABAAAA=</HashCode>
+      <FileName>Controllers\HistoriesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ServicesCourse.Controllers.HomeController">
+    <Position X="15.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIACADQAAAAAAAAIAAAAAAAAgAAEQAAAAAAA=</HashCode>
+      <FileName>Controllers\HomeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ServicesCourse.Controllers.SectionsController">
+    <Position X="12" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABBACAAAAAAACAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\SectionsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ServicesCourse.Controllers.ServicesController">
+    <Position X="10.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAABBACAAAAAAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\ServicesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ServicesCourse.Controllers.SubsectionsController">
+    <Position X="10.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABBACAAAAAAAAAAAEAAEACAAMAAAAAAAA=</HashCode>
+      <FileName>Controllers\SubsectionsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ServicesCourse.Controllers.UserController">
+    <Position X="12" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAQAAAAAAQAACAAEAAAgAAAA=</HashCode>
+      <FileName>Controllers\UserController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ServicesCourse.Controllers.UserProfilesController">
+    <Position X="13.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABBAAAAAAAAQAAAAAAAAACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\UserProfilesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ServicesCourse.Controllers.UsersController">
+    <Position X="17.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABBQCAAAAAAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\UsersController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ServicesCourse.Migrations.init" Collapsed="true">
+    <Position X="20.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAI=</HashCode>
+      <FileName>Migrations\20220323120430_init.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ServicesCourse.Migrations.ApplicationDbContextModelSnapshot">
+    <Position X="20.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Migrations\ApplicationDbContextModelSnapshot.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ServicesCourse.Program">
+    <Position X="22" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ServicesCourse.Startup">
+    <Position X="22" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAgAAACAAAAAA=</HashCode>
+      <FileName>Startup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="ServicesCourse.Models.SexNames">
+    <Position X="4" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Models\Sex.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ServicesCourse.Models.UserTypes">
+    <Position X="4" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Models\UserType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

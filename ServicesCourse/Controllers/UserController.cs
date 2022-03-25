@@ -104,7 +104,7 @@ namespace ServicesCourse.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Login"] = new SelectList(_context.User, "Login", "Login", userProfile.Login);
+            ViewData["SexId"] = new SelectList(_context.Sex, "Id", "SexName");
             return View(userProfile);
         }
 

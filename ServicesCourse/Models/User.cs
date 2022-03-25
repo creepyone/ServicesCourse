@@ -15,7 +15,6 @@ namespace ServicesCourse.Models
         [Display(Name = "Пароль")]
         [MinLength(4, ErrorMessage = "Минимальная длина пароля - 4 символа")]
         [MaxLength(20, ErrorMessage = "Максимальная длина пароля - 20 символов")]
-        [StringLength(20, MinimumLength = 4)]
         public string Password { get; set; }
 
         [Display(Name = "Активен")]

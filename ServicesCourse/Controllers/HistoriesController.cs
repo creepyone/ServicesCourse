@@ -122,7 +122,7 @@ namespace ServicesCourse.Controllers
 
         public IActionResult AccessHistoryToExcel()
         {
-            DataTable dt = new DataTable("История посещений");
+            DataTable dt = new DataTable("История посещений за сутки");
             dt.Columns.AddRange(new DataColumn[7]
             {
                 new DataColumn("Логин"),
@@ -134,11 +134,16 @@ namespace ServicesCourse.Controllers
                 new DataColumn("Версия")
             });
 
+            int hours = 24;
+            DbFunctions dbFunctions = null;
+
             var data = _context.History
                 .Include(s => s.User)
                 .Include(s => s.Service)
                 .ThenInclude(s => s.Subsection)
-                .ThenInclude(s => s.Section);
+                .ThenInclude(s => s.Section)
+                .Where(s => dbFunctions.DateDiffHour(s.AccessTime, DateTime.UtcNow) <= hours)
+                .OrderByDescending(s => s.AccessTime); 
 
             foreach (var history in data)
             {
@@ -168,10 +173,14 @@ namespace ServicesCourse.Controllers
                 new DataColumn("Количество посещений")
             });
 
+            int hours = 24;
+            DbFunctions dbFunctions = null;
+
             var data = _context.History
                 .Include(s => s.Service)
                 .ThenInclude(s => s.Subsection)
                 .ThenInclude(s => s.Section)
+                .Where(s => dbFunctions.DateDiffHour(s.AccessTime, DateTime.UtcNow) <= hours)
                 .GroupBy(s => new { s.ServiceId, s.Service.ServiceName })
                 .Select(a => new { Name = a.Key, Amount = a.Count() })
                 .OrderBy(s => s.Amount)
@@ -232,6 +241,46 @@ namespace ServicesCourse.Controllers
                 {
                     wb.SaveAs(stream);
                     return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Непосещенные сервисы.xlsx");
+                }
+            }
+        }
+
+        public IActionResult GetAllHistoryToExcel()
+        {
+            DataTable dt = new DataTable("История посещений за все время");
+            dt.Columns.AddRange(new DataColumn[7]
+            {
+                new DataColumn("Логин"),
+                new DataColumn("Код сервиса"),
+                new DataColumn("Название сервиса"),
+                new DataColumn("Время посещения"),
+                new DataColumn("Раздел"),
+                new DataColumn("Подраздел"),
+                new DataColumn("Версия")
+            });
+
+
+            var data = _context.History
+                .Include(s => s.User)
+                .Include(s => s.Service)
+                .ThenInclude(s => s.Subsection)
+                .ThenInclude(s => s.Section)
+                .OrderByDescending(s => s.AccessTime);
+
+            foreach (var history in data)
+            {
+                dt.Rows.Add(history.Login, history.ServiceId, history.Service.ServiceName, history.AccessTime,
+                    history.Service.Subsection.Section.SectionName, history.Service.Subsection.SubscetionName,
+                    history.Service.Version);
+            };
+
+            using (XLWorkbook wb = new())
+            {
+                wb.Worksheets.Add(dt);
+                using (MemoryStream stream = new())
+                {
+                    wb.SaveAs(stream);
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "История посещений за все время.xlsx");
                 }
             }
         }

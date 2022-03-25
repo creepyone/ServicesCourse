@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -22,7 +23,9 @@ namespace ServicesCourse.Controllers
         // GET: Users
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.User.Include(u => u.UserType).Where(p => p.Login != "admin");
+            var userName = User.Claims.First(p => p.Type == ClaimTypes.NameIdentifier).Value;
+            var applicationDbContext = _context.User.Include(u => u.UserType).
+                Where(p => p.Login != userName);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -66,7 +69,12 @@ namespace ServicesCourse.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _context.User.AddAsync(user); 
+                await _context.User.AddAsync(user);
+                await _context.UserProfile.AddAsync(new UserProfile
+                {
+                    Login = user.Login
+                });
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(user);

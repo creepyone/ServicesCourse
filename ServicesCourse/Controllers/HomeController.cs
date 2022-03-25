@@ -63,6 +63,12 @@ namespace ServicesCourse.Controllers
                     ActivityStatus = true
                 });
 
+
+                await _context.UserProfile.AddAsync(new UserProfile()
+                {
+                    Login = login
+                });
+
                 _context.SaveChanges();
 
                 var claims = new List<Claim>();

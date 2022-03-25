@@ -14,13 +14,14 @@
         <li class="list-group-item"><a class="text-decoration-none" asp-controller="Histories" asp-action="ActiveServicesBySectionToExcel">Количество активных сервисов по разделам</a></li>
         <li class="list-group-item"><a class="text-decoration-none" asp-controller="Histories" asp-action="AccessHistoryToExcel">Информация о посещениях</a></li>
         <li class="list-group-item"><a class="text-decoration-none" asp-controller="Histories" asp-action="TopAccessServicesToExcel">5 самых посещаемых сервисов</a></li>
-        <li class="list-group-item"><a class="text-decoration-none" asp-controller="Histories" asp-action="NotVisitedServicesToExcel">Список непосещенных сегодня сервисов</a></li>
+        <li class="list-group-item"><a class="text-decoration-none" asp-controller="Histories" asp-action="NotVisitedServicesToExcel">Список не посещенных сегодня сервисов</a></li>
     </ul>
 </div>
 
 <hr />
 
 <h1>История посещений</h1>
+<span><a class="text-decoration-none" asp-controller="Histories" asp-action="GetAllHistoryToExcel">Выгрузить историю</a></span>
 
 <table class="table">
     <thead>
@@ -37,7 +38,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var item in Model.OrderByDescending(s => s.AccessTime).Take(50))
         {
             <tr>
                 <td>
