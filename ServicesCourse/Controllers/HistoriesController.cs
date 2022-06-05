@@ -54,9 +54,9 @@ namespace ServicesCourse.Controllers
             return View(history);
         }
 
-        public IActionResult ActiveServicesToExcel()
+        public ActionResult ActiveServicesToExcel()
         {
-            DataTable dt = new DataTable("Активные сервисы");
+            DataTable dt = new DataTable("Список активных сервисов");
             dt.Columns.AddRange(new DataColumn[5]
             {
                 new DataColumn("Код"),
@@ -83,14 +83,14 @@ namespace ServicesCourse.Controllers
                 using (MemoryStream stream = new())
                 {
                     wb.SaveAs(stream);
-                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Список активных сервисов системы.xlsx");
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Список активных сервисов.xlsx");
                 }
             }
 
         }
         public IActionResult ActiveServicesBySectionToExcel()
         {
-            DataTable dt = new DataTable("Активные сервисы разделам");
+            DataTable dt = new DataTable("Активные сервисы по разделам");
             dt.Columns.AddRange(new DataColumn[3]
             {
                 new DataColumn("Код раздела"),
@@ -115,14 +115,14 @@ namespace ServicesCourse.Controllers
                 using (MemoryStream stream = new())
                 {
                     wb.SaveAs(stream);
-                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Количество активных сервисов по разделам.xlsx");
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Активные сервисы по разделам.xlsx");
                 }
             }
         }
 
         public IActionResult AccessHistoryToExcel()
         {
-            DataTable dt = new DataTable("История посещений за сутки");
+            DataTable dt = new DataTable("Информация о посещениях");
             dt.Columns.AddRange(new DataColumn[7]
             {
                 new DataColumn("Логин"),
@@ -158,14 +158,14 @@ namespace ServicesCourse.Controllers
                 using (MemoryStream stream = new())
                 {
                     wb.SaveAs(stream);
-                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "История посещений.xlsx");
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Информация о посещениях.xlsx");
                 }
             }
         }
 
         public IActionResult TopAccessServicesToExcel()
         {
-            DataTable dt = new DataTable("Самые посещаемые сервисы");
+            DataTable dt = new DataTable("Пять самых посещаемых сервисов");
             dt.Columns.AddRange(new DataColumn[3]
             {
                 new DataColumn("Код"),
@@ -197,14 +197,14 @@ namespace ServicesCourse.Controllers
                 using (MemoryStream stream = new())
                 {
                     wb.SaveAs(stream);
-                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Самые посещаемые сервисы.xlsx");
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Пять самых посещаемых сервисов.xlsx");
                 }
             }
         }
 
         public IActionResult NotVisitedServicesToExcel()
         {
-            DataTable dt = new DataTable("Непосещенные сервисы");
+            DataTable dt = new DataTable("Список не посещенных сервисов");
             dt.Columns.AddRange(new DataColumn[5]
             {
                 new DataColumn("Код"),
@@ -240,7 +240,7 @@ namespace ServicesCourse.Controllers
                 using (MemoryStream stream = new())
                 {
                     wb.SaveAs(stream);
-                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Непосещенные сервисы.xlsx");
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Список не посещенных сервисов.xlsx");
                 }
             }
         }

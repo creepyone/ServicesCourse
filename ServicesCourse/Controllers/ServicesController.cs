@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ServicesCourse.Models;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ServicesCourse.Controllers
 {
@@ -23,8 +21,28 @@ namespace ServicesCourse.Controllers
         // GET: Services
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Service.Include(s => s.Subsection);
-            return View(await applicationDbContext.ToListAsync());
+            var data = _context.Service.Include(s => s.Subsection);
+            ViewData["Sections"] = new SelectList(_context.Section, "Id", "SectionName").Prepend(new SelectListItem("Все", "0"));
+            return View(await data.ToListAsync());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Index(int sectionName, bool status)
+        {
+            IQueryable<Service> data;
+            if (sectionName != 0)
+            {
+                data = _context.Service.Include(s => s.Subsection).ThenInclude(s => s.Section)
+                   .Where(s => s.Subsection.Section.Id == sectionName & s.ActivityStatus == status);
+            }
+            else
+            {
+                data = _context.Service.Include(s => s.Subsection).ThenInclude(s => s.Section)
+                   .Where(s => s.ActivityStatus == status);
+            }
+
+            ViewData["Sections"] = new SelectList(_context.Section, "Id", "SectionName").Prepend(new SelectListItem("Все", "0"));
+            return View(await data.ToListAsync());
         }
 
         // GET: Services/Details/5

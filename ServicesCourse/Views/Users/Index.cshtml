@@ -10,6 +10,16 @@
 <p>
     <a class="text-decoration-none" asp-action="Create">Добавить пользователя</a>
 </p>
+<hr />
+<div class="row">
+    <div class="col-md-3">
+        <p>Введите логин пользователя:</p>
+        <input class="form-control" id="myInput" type="text">
+    </div>
+</div>
+
+<br>
+
 <table class="table">
     <thead>
         <tr>
@@ -28,27 +38,46 @@
             <th></th>
         </tr>
     </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Login)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Password)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ActivityStatus)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserType.UserTypeName)
-            </td>
-            <td>
-                <a class="text-decoration-none" asp-action="Edit" asp-route-id="@item.Login">Изменить</a> |
-                <a class="text-decoration-none text-success" asp-action="Details" asp-route-id="@item.Login">Подробнее</a> |
-                <a class="text-decoration-none text-danger" asp-action="Delete" asp-route-id="@item.Login">Удалить</a>
-            </td>
-        </tr>
-}
+    <tbody id="myTable">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Login)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Password)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ActivityStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserType.UserTypeName)
+                </td>
+                <td>
+                    <a class="text-decoration-none" asp-action="Edit" asp-route-id="@item.Login">Изменить</a> |
+                    <a class="text-decoration-none text-success" asp-action="Details" asp-route-id="@item.Login">Подробнее</a> |
+                    <a class="text-decoration-none text-danger" asp-action="Delete" asp-route-id="@item.Login">Удалить</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+
+@section scripts {
+<script>
+    $(document).ready(function(){
+      $("#myInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function() {
+          $(this).toggle($(this).find("td:eq(0)").text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+
+    $('select').on('change', function() {
+        alert( this.value );
+    });
+</script>
+}

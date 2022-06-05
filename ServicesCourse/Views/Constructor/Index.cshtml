@@ -1,0 +1,33 @@
+﻿@model DevExpress.XtraReports.Web.QueryBuilder.QueryBuilderModel
+
+@{
+    ViewData["Title"] = "Конструктор запросов";
+}
+<link href="~/css/querybuilder.part.bundle.css" rel="stylesheet" />
+<script src="~/js/querybuilder.part.bundle.js"></script>
+
+<script>
+    function SaveQueryRequested(sender) {
+        var saveQueryModel = sender.GetSaveQueryModel();
+        $.ajax({
+            async: false,
+            url: "/Constructor/SaveQuery",
+            type: "POST",
+            data: saveQueryModel,
+            statusCode: {
+                200: function(result) { window.open('@Url.Content("~/Constructor/DownloadQuery")'); }
+            }
+        });
+    }
+</script>
+
+@(Html.DevExpress()
+    .QueryBuilder("webQueryBuilder")
+    .ClientSideEvents(x => {
+        x.SaveQueryRequested("SaveQueryRequested");
+    })
+    .Height("600px")
+    .Bind(Model))
+
+
+

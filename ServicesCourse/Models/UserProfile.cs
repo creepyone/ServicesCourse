@@ -43,18 +43,4 @@ namespace ServicesCourse.Models
 
     }
 
-    public class PhoneNumberAttribute : ValidationAttribute
-    {   
-        public new string ErrorMessage { get; } = "Неверный формат номера";
-        public override bool IsValid(object value)
-        {
-            string phoneNumber = value as string;
-            if (phoneNumber == null) return false;
-            var reg = new Regex(@"^((\+7|7|8)+([0-9]){10})$");
-            if (reg.IsMatch(phoneNumber)) return true;
-            return false;
-        }
-    }
-
-
 }

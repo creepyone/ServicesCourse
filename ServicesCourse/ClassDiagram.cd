@@ -106,13 +106,6 @@
       <FileName>Models\UserProfile.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ServicesCourse.Models.PhoneNumberAttribute">
-    <Position X="7.5" Y="4.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AQAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Models\UserProfile.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="ServicesCourse.Models.UserType">
     <Position X="7.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
@@ -183,7 +176,7 @@
       <FileName>Controllers\UsersController.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ServicesCourse.Migrations.init" Collapsed="true">
+  <Class Name="ServicesCourse.Migrations.init">
     <Position X="20.25" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAI=</HashCode>

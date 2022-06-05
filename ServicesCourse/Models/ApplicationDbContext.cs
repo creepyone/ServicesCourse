@@ -1,5 +1,4 @@
-﻿using Microsoft.Build.Tasks.Deployment.Bootstrapper;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace ServicesCourse.Models
@@ -9,13 +8,12 @@ namespace ServicesCourse.Models
 
         public ApplicationDbContext() : base()
         {
-
         }
 
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
-            Database.EnsureCreated();
+            //Database.EnsureCreated();
         }
 
         public DbSet<User> User { get; set; }
@@ -85,7 +83,7 @@ namespace ServicesCourse.Models
             {
                 builder.HasKey(p => p.Login);
                 builder.Property(p => p.BirthDate).HasColumnType("date");
-                
+
                 builder.HasData(new UserProfile[]
                 {
                     new UserProfile { Login = "admin" },
@@ -165,7 +163,8 @@ namespace ServicesCourse.Models
                         j =>
                         {
                             j.Property(pt => pt.AccessTime).HasDefaultValueSql("CURRENT_TIMESTAMP");
-                        });
+                        }
+                    );
             }
         }
 

@@ -1,16 +1,13 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using ServicesCourse.Models;
 using Microsoft.EntityFrameworkCore;
+using DevExpress.AspNetCore; 
+
 namespace ServicesCourse
 {
     public class Startup
@@ -25,7 +22,7 @@ namespace ServicesCourse
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>
                 {
@@ -35,7 +32,7 @@ namespace ServicesCourse
             services.AddRazorPages().AddRazorRuntimeCompilation();
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DataBase")));
-
+            services.AddDevExpressControls(); // added 
             services.AddRouting(options => options.LowercaseUrls = true);
         }
 
@@ -58,13 +55,14 @@ namespace ServicesCourse
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseDevExpressControls(); // added
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-            });
+            }); 
         }
     }
 }

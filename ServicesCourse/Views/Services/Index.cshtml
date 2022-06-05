@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Сервисы";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var services = ViewData["Sections"] as IEnumerable<SelectListItem>;
 }
 
 <h1>Сервисы</h1>
@@ -10,6 +11,29 @@
 <p>
     <a class="text-decoration-none" asp-action="Create">Добавить сервис</a>
 </p>
+<hr />
+<h4>Фильтр</h4>
+<div>
+    <form method="post">
+        <div class="p-2 col-xs-8 col-sm-8 col-md-2" id="filters">
+            <label>Раздел</label>
+            <select class="form-control" asp-items=services name="sectionName">
+                <options>Все</options>
+            </select>
+        </div>
+        <div class="p-2 col-xs-8 col-sm-8 col-md-2">
+             <input style="margin-left: 5px" type="checkbox" name="status" value="true" class="form-check-input" />
+             <label style="margin-left: 25px"class="form-check-label">Активен</label>
+        </div>
+        <div class="p-2">
+            <button type="submit" class="btn btn-primary">Применить фильтры</button>
+        </div>
+    </form>
+    <div class="p-2">
+        <a class="text-decoration-none" asp-controller="Services" asp-action="Index">Сбросить фильтры</a>
+    </div>
+</div>
+<hr />
 <table class="table">
     <thead>
         <tr>
@@ -21,6 +45,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Subsection)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Subsection.Section.SectionName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Version)
@@ -44,6 +71,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Subsection.SubscetionName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Subsection.Section.SectionName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Version)

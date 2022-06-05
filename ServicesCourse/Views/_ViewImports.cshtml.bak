@@ -1,0 +1,3 @@
+﻿@using ServicesCourse
+@using ServicesCourse.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

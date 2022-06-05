@@ -66,7 +66,7 @@ namespace ServicesCourse.Controllers
                 return NotFound();
             }
 
-            var userProfile = await _context.UserProfile.FindAsync(id);
+            var userProfile =  _context.UserProfile.Find(id);
             if (userProfile == null)
             {
                 return NotFound();
