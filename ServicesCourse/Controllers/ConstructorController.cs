@@ -3,8 +3,6 @@ using DevExpress.XtraReports.Web.QueryBuilder.Services;
 using Microsoft.AspNetCore.Authorization;
 using DevExpress.DataAccess.Web.QueryBuilder;
 using DevExpress.DataAccess.Sql;
-using System.Threading.Tasks;
-using System.Diagnostics;
 using System.Data.SqlClient;
 using System.Data;
 using ClosedXML.Excel;

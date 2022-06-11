@@ -177,31 +177,59 @@
     </TypeIdentifier>
   </Class>
   <Class Name="ServicesCourse.Migrations.init">
-    <Position X="20.25" Y="2" Width="1.5" />
+    <Position X="21.75" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAI=</HashCode>
       <FileName>Migrations\20220323120430_init.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ServicesCourse.Migrations.ApplicationDbContextModelSnapshot">
-    <Position X="20.25" Y="0.5" Width="1.5" />
+    <Position X="21.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
       <FileName>Migrations\ApplicationDbContextModelSnapshot.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ServicesCourse.Program">
-    <Position X="22" Y="0.5" Width="1.5" />
+    <Position X="23.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ServicesCourse.Startup">
-    <Position X="22" Y="2" Width="1.5" />
+    <Position X="23.5" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAgAAACAAAAAA=</HashCode>
       <FileName>Startup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ServicesCourse.Controllers.ConstructorController">
+    <Position X="17.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAQAEAAgAAAAA=</HashCode>
+      <FileName>Controllers\ConstructorController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CustomWebDocumentViewerController">
+    <Position X="19" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\ReportControllers.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CustomReportDesignerController">
+    <Position X="19" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\ReportControllers.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CustomQueryBuilderController">
+    <Position X="19" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\ReportControllers.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Enum Name="ServicesCourse.Models.SexNames">
